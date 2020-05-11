@@ -23,6 +23,7 @@ class BlogpostsController < ApplicationController
         if logged_in?
             @blogposts = Blogpost.all
             erb :"blogposts/feed"
+            
             # @blogposts = current_user.blogposts  
         end
     end
