@@ -1,0 +1,9 @@
+<h1>Edit your title</h1>
+
+<form action="/titles/<%= @title.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH" />
+    <label for="title">Algorithm title generator here</label>
+    <input id="title" type="text" name="title" />
+    # <%= @title.title %>
+    <input type="submit" />
+</form>

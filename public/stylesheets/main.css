@@ -1,0 +1,166 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Raleway:wght@300;400;700&display=swap');
+
+@media screen {
+  /* --- Reset Styles --- */
+  * {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* --- Welcome Page Styles --- */
+  body {
+    background-color: #7A1A5F;
+    color: #DEB695;
+    font-family: 'Raleway', sans-serif;
+    line-height: 29px;
+    font-size: 24px;   
+  }
+
+  /* .wrapper {
+    background: #fff;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    margin: 16px auto;
+    max-width: 960px;
+    padding: 2.25%; /* 18px / 800px */
+    /* width: 85%;
+  } */ 
+ 
+  h1 {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 86px;
+
+    color: #B1C4FF;
+  }
+
+  h2 {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    
+    color: #9CAEE7;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    
+    color: #9CAEE7;
+  }
+
+  .intro {
+    margin-bottom: 56px;
+    padding: 88px;
+  }
+
+  .intro h1 {
+    margin-bottom: 8px;
+  }
+
+  .intro p {
+    text-align: center;
+  }
+
+  .login {
+    text-align: center;
+  }
+
+  .login p {
+    margin: 5px 0;
+    color: #DECE95;
+  }
+
+  .btn {
+    background: #DECE95;
+    border-radius: 13px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #7A1A5F;
+    padding:5px 20px;
+  }
+
+  .btn:hover {
+    color: #DECE95;
+    background-color: #9CAEE7;
+  }
+
+  .btn-anchor {
+    background-color: transparent;
+    color: #DECE95; 
+  }
+
+  .header h1{
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .signupForm {
+    text-align: center;
+    padding-top: 72px;
+  }
+/* 
+  .main {
+    overflow: hidden;
+  }
+
+  .content {
+    float: left;
+    width: 60%; /* 480px / 800px */
+  }
+
+  /* .branding {
+    clear: both;
+  } */ 
+
+  footer.branding {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #ccc;
+    /* margin-top: 20px; */
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  /* .wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    width: auto;
+  } */
+
+  h1 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
