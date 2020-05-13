@@ -1,4 +1,11 @@
-<h1>Welcome<br/>
+<h1>Welcome, , <%= current_user.username %><br/>
 here are your<br/>
 Blog posts</h1>
+
+
+<ul>
+<% @blogposts.each do |post| %>
+<li> <%= post.id %> </li>
+<%end%>
+</ul>
 

@@ -1,26 +1,36 @@
 class UsersController < ApplicationController
 
+  configure do
+    enable :session
+    set :session_secret, "asd123"
+  end
+
   get "/users/:id" do
-    if logged_in
-    @user = User.find(params[:id])
-    erb :'/users/show'
+    if logged_in?
+      @user = User.find(params[:id])
+      erb :'/users/show'
     end
   end
 
   get "/signup" do
+    if !logged_in?
     erb :'/users/signup'
+    else
+      redirect to "/blogposts"
+    end
   end
 
   #saves user's info
-  post "/signup" do
-    @user = User.new(params)
-    #Here we can include more requirements of our users 
-    if @user.save 
-      # && params[:password_digest].length > 4
-      # session[:user_id] = @user.id
-      redirect "/blogposts"
+  post '/signup' do
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      redirect to '/signup'
     else
-      erb :'users/signup'
+      @user = User.new(params)
+      #Here we can include more requirements of our users 
+      @user.save 
+      # && params[:password_digest].length > 4
+      session[:user_id] = @user.id
+      redirect to "/blogposts"
     end
   end
 
@@ -41,16 +51,18 @@ end
 
   get "/logout" do
     if logged_in?
-      if session.clear
+        session.destroy
         redirect "/"
       else
-        redirect '/blogposts/index'
+        redirect '/'
       end
     end
+
   end
 
   # delete "/users/deactivate" do
   # end
 
-end
+
+
 

@@ -1,8 +1,8 @@
 class BlogpostsController < ApplicationController
 
     configure do
-        enable :sessions
-        set :session_secret, "secret"
+        enable :session
+        set :session_secret, "asd123"
       end
 
     #TO DO:
@@ -22,62 +22,117 @@ class BlogpostsController < ApplicationController
     get "/blogposts" do
         if logged_in?
             @blogposts = Blogpost.all
-            erb :"blogposts/feed"
-            
             # @blogposts = current_user.blogposts  
+            erb :"blogposts/index"
+        else
+            erb :"users/login"    
         end
     end
 
     #allows user to create a new blogpost 
-    get "/blogposts/new" do     
+    get "/blogposts/new" do
+        if logged_in?     
         #folder/file  
-        erb :"blogposts/new"      
+        erb :"blogposts/new" 
+        else 
+            redirect to '/login'
+        end     
     end
 
     #SHOWS AND SAVES BLOGPOST TO ID 
      #this posts our blog from forms and saves to an instance
      post "/blogposts" do
-        @blogpost =  Blogpost.new(params) 
-        @user = current_user    
-        if @blogpost.save
-            redirect "/blogposts/#{@blogpost.id}" #this redirects us to blogpost/:id
-        else 
-            erb :"blogposts/new"
+        if logged_in?
+            if params[:content] == ""
+                redirect to "/blogposts/new"
+            else
+                @blogpost =  current_user.blogposts.build(content: params[:content]) 
+                #@user = current_user    
+                if @blogpost.save
+                    redirect "/blogposts/#{@blogpost.id}" #this redirects us to blogpost/:id
+                else 
+                    redirect to "/blogposts/new"
+                end
+            end
+        else
+            redirect to '/login'
         end
     end
 
     #finds specific blogpost related to user with id # 
     get "/blogposts/:id" do
+        if logged_in?
+            @blogpost = Blogpost.find_by_id(params[:id])
         #use params to find params[:id]
         #any logic before rendering a page
         #can only see this page if you are logged in
-        find_blogpost(params[:id])
-        erb :"blogposts/show"
+        # find_blogpost(params[:id])
+            erb :"blogposts/show"
+        else
+            redirect to '/login'
+        end
     end
 
    #allows us to edit specific blogpost 
     get "/blogposts/:id/edit" do
-        find_blogpost(params[:id])
-        erb :"blogposts/edit"
+        if logged_in?
+            @blogpost = Blogpost.find_by_id(params[:id])
+            if @blogpost && @blogpost.user == current_user
+                erb :"blogposts/edit"
+            else 
+                redirect to '/blogposts'
+            end
+        else
+            redirect to '/login'
+        end
     end
 
     patch "/blogposts/:id" do
-        find_blogpost(params[:id])
-        @blogpost_params = update _whiltelist(params)
-        @blogpost.update(@blogpost_params)
-        redirect "/blogposts/#{@blogpost.id}"
+        if logged_in?
+            if params[:content] == ""
+                redirect to "/blogposts/#{params[:id]}/edit"
+            else
+                @blogpost = Blogpost.find_by_id(params[:id])
+                if @blogpost && @blogpost.user == current_user
+                    if @blogpost.update(content: params[:content])
+                        redirect to "/blogposts/#{@blogpost.id}"
+                    else
+                        redirect to "/blogposts/#{@blogpost.id}/edit"
+                    end
+                else
+                    redirect to '/blogposts'
+                end
+            end
+        else
+            redirect to '/login'
+        # find_blogpost(params[:id])
+        # @blogpost_params = update _whiltelist(params)
+        # @blogpost.update(@blogpost_params)
+        # redirect "/blogposts/#{@blogpost.id}"
+        end
     end
 
     #deletes individual blogpost 
     delete "/blogposts/:id/delete" do
-        find_blogpost(params[:id])
-        @blogpost.destroy
-        if @blogpost.errors
-            erb :"blogposts/index"
-        else
-            erb :"blogposts/#{@blogpost.id}"
+        if logged_in?
+            @blogpost = Blogpost.find_by_id(params[:id])
+            if @blogpost && @blogpost.user == current_user
+              @blogpost.delete
+            end
+            redirect to '/blogposts'
+          else
+            redirect to '/login'
+          end
         end
-    end
+      end
+    #     find_blogpost(params[:id])
+    #     @blogpost.destroy
+    #     if @blogpost.errors
+    #         erb :"blogposts/index"
+    #     else
+    #         erb :"blogposts/#{@blogpost.id}"
+    #     end
+    # end
 
     #custom routes 
     #can't call this method 
@@ -93,4 +148,3 @@ class BlogpostsController < ApplicationController
             @blogpost = Blogpost.find(id)
         end
 
-end

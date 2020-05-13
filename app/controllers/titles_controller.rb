@@ -1,5 +1,10 @@
 class TitlesController < ApplicationController
 
+    configure do
+        enable :session
+        set :session_secret, "asd123"
+      end
+
     #TO DO:
     #shows index of titles X
     #show individual title

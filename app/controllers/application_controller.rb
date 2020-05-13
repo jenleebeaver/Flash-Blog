@@ -8,6 +8,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :session
+    set :session_secret, "asd123"
   end
 
   get "/" do
@@ -29,8 +31,14 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       #checks to see if @user is false
-      @user ||= User.find(session[:user_id]) if session[:user_id]
+      @user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
+
+    #duplicate code
+    # def current_user
+    #   @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    # end
+
   end
 
 end

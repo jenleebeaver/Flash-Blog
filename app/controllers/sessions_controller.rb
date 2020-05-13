@@ -10,19 +10,21 @@ register Sinatra::ActiveRecordExtension
   
   
     get '/login' do
-      # the line of code below render the view page in app/views/sessions/login.erb
-      erb :'users/login'
+      if !logged_in?
+        erb :'users/login'
+      else
+        redirect to '/blogposts'
+      end
     end
   
     post '/login' do
       @user = User.find_by(email: params[:email])
+      binding.pry
       if @user && @user.authenticate(params[:password_digest])
-        print @user.id
-        print session
-        session[:user_id] = @user.id
-        redirect '/blogposts'
+        session[:user_id] = @user
+        redirect to '/blogposts'
       else
-        erb :"users/login"
+       redirect to"users/login"
       end
     end
   
@@ -30,5 +32,6 @@ register Sinatra::ActiveRecordExtension
       session.clear #clears the data upon logout
       redirect '/'
     end
+    
 end
   
