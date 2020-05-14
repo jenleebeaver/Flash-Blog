@@ -1,23 +1,36 @@
-<h1>Welcome, <%= current_user.name %><br/>
-here are your<br/>
-Blog posts</h1>
+<div class="container">
+    <main>
+    <div class="intro">
+        <h1>Welcome, <%= current_user.name %>.<br/></h1>
+            <h2>Here are your blogposts</h2>
+    </div>
 
-<% if (@blogposts.blank?) %>
-You have no blogposts.
-<a href="/blogposts/new">Create Post</a>
-<% end %>
+    <div class="content">
+        <div>
+        <% if (@blogposts.blank?) %>
+            You have no blogposts.
+            <a href="/blogposts/new">Create Post</a>
+        <% end %>
+        </div>
 
-<ul>
-    <% @blogposts.each do |post| %>
-        <li> 
-        <%= post.content %>
-        <a href="/blogposts/<%= post.id %>/edit">Edit</a>
-        </li>
-    <%end %>
-    <a href="/blogposts/new">Create Post</a>
-</ul>
+        <div>
+            <div class="blogposts">
+            <ul>
+                <% @blogposts.each do |post| %>
+            <li> 
+                <%= post.content %>
+                <a href="/blogposts/<%= post.id %>/edit" class="btn btn-anchor btn-logout">edit</a>
+            </li>
+                <%end %>
+            </div>
+                <a href="/blogposts/new" class="btn">Create Post</a>
+            </ul>
+        </div>
 
-<a href="/sessions/logout">Logout</a>
+        <a href="/sessions/logout" class="btn btn-anchor btn-logout">Logout</a>
+    </div>
+    </main>
+</div>
 
 
 
