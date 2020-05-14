@@ -1,11 +1,25 @@
-<h1>Welcome, , <%= current_user.username %><br/>
+<h1>Welcome, <%= current_user.name %><br/>
 here are your<br/>
 Blog posts</h1>
 
+<% if (@blogposts.blank?) %>
+You have no blogposts.
+<a href="/blogposts/new">Create Post</a>
+<% end %>
 
 <ul>
-<% @blogposts.each do |post| %>
-<li> <%= post.id %> </li>
-<%end%>
+    <% @blogposts.each do |post| %>
+        <li> 
+        <%= post.content %>
+        <a href="/blogposts/<%= post.id %>/edit">Edit</a>
+        </li>
+    <%end %>
+    <a href="/blogposts/new">Create Post</a>
 </ul>
+
+<a href="/sessions/logout">Logout</a>
+
+
+
+
 

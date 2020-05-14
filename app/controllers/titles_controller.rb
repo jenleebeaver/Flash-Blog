@@ -1,7 +1,7 @@
 class TitlesController < ApplicationController
 
     configure do
-        enable :session
+        enable :sessions
         set :session_secret, "asd123"
       end
 

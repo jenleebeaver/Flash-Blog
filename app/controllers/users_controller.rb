@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   configure do
-    enable :session
+    enable :sessions
     set :session_secret, "asd123"
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   #saves user's info
   post '/signup' do
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+    if params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
       @user = User.new(params)

@@ -1,7 +1,7 @@
 class BlogpostsController < ApplicationController
 
     configure do
-        enable :session
+        enable :sessions
         set :session_secret, "asd123"
       end
 
@@ -22,6 +22,7 @@ class BlogpostsController < ApplicationController
     get "/blogposts" do
         if logged_in?
             @blogposts = Blogpost.all
+            # binding.pry
             # @blogposts = current_user.blogposts  
             erb :"blogposts/index"
         else
@@ -147,4 +148,6 @@ class BlogpostsController < ApplicationController
         def find_blogpost(id)
             @blogpost = Blogpost.find(id)
         end
+
+ 
 

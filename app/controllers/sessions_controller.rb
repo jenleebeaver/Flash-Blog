@@ -19,9 +19,8 @@ register Sinatra::ActiveRecordExtension
   
     post '/login' do
       @user = User.find_by(email: params[:email])
-      binding.pry
       if @user && @user.authenticate(params[:password_digest])
-        session[:user_id] = @user
+        session[:user_id] = @user.id
         redirect to '/blogposts'
       else
        redirect to"users/login"
