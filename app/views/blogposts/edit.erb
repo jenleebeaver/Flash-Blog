@@ -1,15 +1,23 @@
-<h1>Edit your </br>
-New Blogpost! </h1>
+<div class="container">
+    <main>
+        <div class="intro">
+            <h1>Edit your blogpost! </h1>
+        </div>
 
-<p>
-<form action="/blogposts/<%= @blogpost.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="PATCH" />
-    <label for="content">Write</label>
-    </br>
-    <textarea id="content" type="text" name="content">
-    # <%= @blogpost.content %>
-    </textarea>
-    </br>
-    <input type="submit"/>
-</form>
-</p>
+        <div class="signupForm">
+            <p>
+            <form action="/blogposts/<%= @blogpost.id %>" method="POST">
+            <input id="hidden" type="hidden" name="_method" value="PATCH" />
+            <label for="content">Write</label>
+            </br>
+            <textarea id="content" type="text" name="content">
+            # <%= @blogpost.content %>
+            </textarea>
+            </br>
+            <input type="submit"/>
+            </form>
+            </p>
+        </div>
+
+    </main>
+</div>
