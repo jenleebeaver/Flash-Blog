@@ -8,11 +8,11 @@ end
 use Rack::MethodOverride
 
 
-run ApplicationController #where we mount our controllers
 use BlogpostsController
 use TitlesController
 use UsersController
 use SessionsController
+run ApplicationController #where we mount our controllers
 
 
 
