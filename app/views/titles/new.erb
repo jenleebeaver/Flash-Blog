@@ -1,7 +1,19 @@
-<h1>Title Generator</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title Gen</title>
+</head>
+<body>
+    <h1>Title Generator</h1>
 
-<form action="/titles" method="POST">
-    <label for="title">Algorithm title generator here</label>
-    <input id="title" type="text" name="title" />
-    <input type="submit" />
-</form>
+    <form action="/titles" method="POST">
+        <label for="title"><div id="titleDisplay">
+
+        </div></label>
+        <input id="title" type="text" name="title" />
+        <input type="Generate Title" />
+    </form>
+
+    <script src="javascript.js"></script>
+</body>
+</html>
