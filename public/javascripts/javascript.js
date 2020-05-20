@@ -1,5 +1,5 @@
 
-var content = [posts.content]
+var content = [blogpost.content.id]
 
 function newTitle()  {
     var randomNumber = Math.floor(Math.random() * 3);

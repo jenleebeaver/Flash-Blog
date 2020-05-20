@@ -1,19 +1,27 @@
-<h1>Blog Post Title</h1>
-</br>
+<div class="container">
+<main>
+    <div class="intro">
+        <h1>Blog Post Title</h1>
+    </div>
+    </br>
 
-<div class="content">
- <p><%= @blogpost.content %></p> 
+    <div class="content">
+        <div class="post">
+            <p><%= @blogpost.content %></p> 
+        </div>
 
- <p><a href="/titles/new">Generate Title</a></p>
-<p><a href="/blogposts/<%= @blogpost.id %>/edit">edit</a></p>
+        <p><a href="/titles/new">Generate Title</a></p>
+        <p><a href="/blogposts/<%= @blogpost.id %>/edit">edit</a></p>
 
-<p>
-<form action="/blogposts/<%= @blogpost.id %>/delete" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="DELETE" />
-    <input type="submit" value="Delete" />
-    </form>
-    </p>
+        <p>
+            <form action="/blogposts/<%= @blogpost.id %>/delete" method="POST">
+            <input id="hidden" type="hidden" name="_method" value="DELETE" />
+            <input type="submit" value="Delete" />
+            </form>
+        </p>
 
-    <p><a href="/blogposts">Go back to blogposts</a></p>
+        <p><a href="/blogposts">Go back to blogposts</a></p>
 
+    </div>
+</main>
 </div>
