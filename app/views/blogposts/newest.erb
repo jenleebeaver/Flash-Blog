@@ -1,0 +1,26 @@
+<div class="container">
+    <main>
+    <div class="intro">
+        <h1> <%= current_user.name %>.<br/></h1>
+            <h2>Here is your last blogpost</h2>
+    </div>
+
+    <div class="content">
+
+        <div>
+            <div class="blogposts">
+            <ul>
+            <li> 
+                <%= @blogpost.content %>
+                <a href="/blogposts/<%= @blogpost.id %>/edit" class="btn btn-anchor btn-logout">edit</a>
+            </li>
+            </div>
+               
+            </ul>
+        </div>
+
+        <a href="/sessions/logout" class="btn btn-anchor btn-logout">Logout</a>
+        <a href="/blogposts">Go back to blogposts</a>
+    </div>
+    </main>
+</div>

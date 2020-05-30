@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   #saves user's info
   post '/signup' do
     if params[:name] == "" || params[:email] == "" || params[:password] == ""

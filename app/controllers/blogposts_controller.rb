@@ -60,6 +60,15 @@ class BlogpostsController < ApplicationController
         end
     end
 
+    get "/blogposts/newest" do 
+        if logged_in?
+            @blogpost = Blogpost.all.last
+            erb :"blogposts/newest"
+        else
+            redirect to '/blogposts'
+        end
+    end
+
     #finds specific blogpost related to user with id # 
     get "/blogposts/:id" do
         if logged_in?
@@ -123,9 +132,30 @@ class BlogpostsController < ApplicationController
             redirect to '/blogposts'
           else
             redirect to '/login'
-          end
         end
-      end
+    end
+end
+
+
+
+
+#write a custom method so that when a user visits localhost:9393/blogposts/newest the user sees the last blog post in the database, regardless of who wrote it
+# post "/blogposts/newest" do 
+#     if logged_in?
+#         @blogpost = Blogpost.all.last
+#         redirect to '/newest'
+#     else
+#         redirect to '/'
+#     end
+# end
+
+
+
+
+
+
+
+
     #     find_blogpost(params[:id])
     #     @blogpost.destroy
     #     if @blogpost.errors
