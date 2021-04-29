@@ -1,5 +1,9 @@
 
-Basic app for users to login and have a space to do private blogging for writing warmups. 
+Basic blogging application using sinatra.
+
+Users can login/signup to get access to a private blogging space. 
+Designed for writing warmups and to combat creative writing blocks. 
 
 PROJECT PLANS
-Would like to allow users to see a list of titles belonging to their blog post and select which title they want to use. Build out an algorithm to generate random titles for users to combat writer's block. 
+Render a list of titles belonging to user's blog post and select which title they want to use. 
+Build out random title generator algorithm for users to combat writer's block. 
